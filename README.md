@@ -1,7 +1,7 @@
 # HWV_AFT
 
 
-'HWV_AFT.r' is the main function that implements HWV_AFT association and interaction test.
+'Multi_Marker_AFT.r' is the main function that implements multi-marker association and interaction test based on the AFT model.
 
 To successfully implement the test, you will need following R package dependencies:
 * MASS
