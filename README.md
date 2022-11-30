@@ -1,4 +1,4 @@
-# HWV_AFT
+# Multi_Marker_AFT
 
 
 'Multi_Marker_AFT.r' is the main function that implements multi-marker association and interaction test based on the AFT model.
