@@ -17,7 +17,7 @@ To successfully implement the test, you will need following R package dependenci
 
 'sample_data' folder contains essential sample datasets to conduct an example association test, without considering genetic heterogeneity, with covariate adjustmne and left truncation.
 
-'util' folder contains utility C++ functions 'aft_comprisk.cpp' and 'aft_comprisk_smalln.cpp' that will be used in main function 'HWV_AFT.r'.
+'util' folder contains utility C++ functions 'aft_comprisk.cpp' and 'aft_comprisk_smalln.cpp' that will be used in main function 'Multi_Marker_AFT.r'.
 
 
 
