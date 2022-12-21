@@ -98,7 +98,7 @@ HWV_AFT = function(G, H=NULL, GxH=NULL, het_cov=NULL, adj_cov=NULL, kernel_G, ke
   
   if(smalln_ind=='no_smalln_adj'){
     
-    sourceCpp('aft_comprisk.cpp')
+    sourceCpp('utils/aft_comprisk.cpp')
     
     W_mats = mvrnorm(BB, mu=rep(0,ncol(adj_cov)), Sigma=diag(ncol(adj_cov)))
     Q_all <- Qall_cpp(E1, W_mats, adj_cov, trunct, survt, tall, status, beta_est)
@@ -127,7 +127,7 @@ HWV_AFT = function(G, H=NULL, GxH=NULL, het_cov=NULL, adj_cov=NULL, kernel_G, ke
     
   } else if(smalln_ind=='smalln_adj'){
     
-    sourceCpp('aft_comprisk_smalln.cpp')
+    sourceCpp('ustils/aft_comprisk_smalln.cpp')
     
     W_mats <- mvrnorm(BB, mu=rep(0,ncol(adj_cov)), Sigma=diag(ncol(adj_cov)))
     Q_all <- Qall_cpp(t(R1),W_mats,adj_cov,trunct,survt,tall,cause1event,beta_est)
