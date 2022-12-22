@@ -24,9 +24,23 @@ To successfully implement the test, you will need following R package dependenci
 
 
 ## Multi_Marker_AFT function input and output
-###Input:* `G`:   Genetic variant matrix* `H`:   Additional genetic variant matrix (Default: NULL; Only needed in G-G/G-E interaction)* `GxH`: Interaction terms as input matrix (Default: NULL; Only needed in G-G/G-E interaction)* `adj_cov`:   Adjustment covariate matrix (Default: NULL)* `het_cov`:   Covariate matrix indicating genetic heterogeneity* `kernel_G`: Kernel type   (included: 'ibs', 'cp', 'gaussian', 'identity') for G or Kernel matrix* `kernel_H`: Kernel type   (included: 'ibs', 'cp', 'gaussian', 'identity') for H or Kernel matrix (Default: NULL; Only needed in G-G/G-E interaction)* `kernel_het`: Kernel type (included: 'ibs', 'cp', 'gaussian', 'identity') for het_cov or Kernel matrix (Default: NULL; Only needed under genetic heterogeneity)* `smalln_ind`: 'smalln_adj' or 'no_smalln_adj' (Default)* `trunct`: truncation time, default is NULL --> no truncation time (OR all truncation time is 0)* `survt`: event or censor time* `status`: Delta (0 or 1)* `BB`: Number of iterations for W, S matrix approximation (Default: 500)
+###Input:
+* `G`:   Genetic variant matrix
+* `H`:   Additional genetic variant matrix (Default: NULL; Only needed in G-G/G-E interaction)
+* `GxH`: Interaction terms as input matrix (Default: NULL; Only needed in G-G/G-E interaction)
+* `adj_cov`:   Adjustment covariate matrix (Default: NULL)
+* `het_cov`:   Covariate matrix indicating genetic heterogeneity
+* `kernel_G`: Kernel type   (included: 'ibs', 'cp', 'gaussian', 'identity') for G or Kernel matrix
+* `kernel_H`: Kernel type   (included: 'ibs', 'cp', 'gaussian', 'identity') for H or Kernel matrix (Default: NULL; Only needed in G-G/G-E interaction)
+* `kernel_het`: Kernel type (included: 'ibs', 'cp', 'gaussian', 'identity') for het_cov or Kernel matrix (Default: NULL; Only needed under genetic heterogeneity)
+* `smalln_ind`: 'smalln_adj' or 'no_smalln_adj' (Default)
+* `trunct`: truncation time, default is NULL --> no truncation time (OR all truncation time is 0)
+* `survt`: event or censor time
+* `status`: Delta (0 or 1)
+* `BB`: Number of iterations for W, S matrix approximation (Default: 500)
 
-###Output:* `pval`: p-value
+###Output:
+* `pval`: p-value
 
 
 ## Example of Multi_Marker_AFT method implementation
@@ -67,17 +81,17 @@ survt = read.csv('sample_data/survt.csv')
 trunct = read.csv('sample_data/trunct.csv')
 
 pval = Multi_Marker_AFT(G=G, 
-				 	H=NULL, 
-					GxH=NULL, 
-					het_cov=NULL, 
-					adj_cov=X, 
-					kernel_G='ibs', 
-					kernel_H=NULL, 
-					kernel_het=NULL, 
-					smalln_ind='no_smalln_adj', 
-					trunct=trunct, 
-					survt=survt, 
-					status=status, 
-					BB=500)
+			H=NULL, 
+			GxH=NULL, 
+			het_cov=NULL, 
+			adj_cov=X, 
+			kernel_G='ibs', 
+			kernel_H=NULL, 
+			kernel_het=NULL, 
+			smalln_ind='no_smalln_adj', 
+			trunct=trunct, 
+			survt=survt, 
+			status=status, 
+			BB=500)
 ```
 
