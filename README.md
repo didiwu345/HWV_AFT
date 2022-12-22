@@ -19,9 +19,8 @@ To successfully implement the test, you will need following R package dependenci
 
 `utils` folder contains utility C++ functions `aft_comprisk.cpp` and `aft_comprisk_smalln.cpp` that will be used in main function `Multi_Marker_AFT.r`.
 
-`Missing_genotype_imputation` folder has a sample script to perform missing genotype imputation with IMPUTE2 software. The best practices using IMPUTE2 software can be found below:
-[Getting started with IMPUTE2](https://mathgen.stats.ox.ac.uk/impute/impute_v2.html#getting_started)
-
+`Missing_genotype_imputation` folder has a sample script to perform missing genotype imputation with IMPUTE2 software. The best practices using IMPUTE2 software can be found in:
+[Getting started with IMPUTE2](https://mathgen.stats.ox.ac.uk/impute/impute_v2.html#getting_started). A sample code that executes IMPUTE2 software (v2.3.2) code is provided in `Missing_genotype_imputation/imputation.txt`.
 
 ## Multi_Marker_AFT function input and output
 ###Input:
