@@ -17,7 +17,7 @@ idtkm = function(X){ return(0 + outer(as.numeric(X), as.numeric(X), "==")) }    
 plkm = function(X){ return(ncol(X) + tcrossprod(X)) }                                    ### Product linear kernel
 
 ### Obtain p-value
-HWV_AFT = function(G, H=NULL, GxH=NULL, het_cov=NULL, adj_cov=NULL, kernel_G, kernel_H=NULL, kernel_het=NULL, smalln_ind='no_smalln_adj',trunct=NULL,survt,status,BB=500){
+Multi_Marker_AFT = function(G, H=NULL, GxH=NULL, het_cov=NULL, adj_cov=NULL, kernel_G, kernel_H=NULL, kernel_het=NULL, smalln_ind='no_smalln_adj',trunct=NULL,survt,status,BB=500){
   # Summary: Function implement HWV_AFT association and interaction test on provided inputs and outputs p-value
   # Input:
   #     G:   Genetic variant matrix
