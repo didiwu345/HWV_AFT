@@ -37,7 +37,7 @@ To successfully implement the test, you will need following R package dependenci
 * `trunct`: truncation time, default is NULL --> no truncation time (OR all truncation time is 0)
 * `survt`: event or censor time
 * `status`: Delta (0 or 1)
-* `BB`: Number of iterations for W, S matrix approximation (Default: 500)
+* `BB`: Number of iterations for W, S matrix approximation (Default: 500); Increase BB increases approximation accuracy, but also increases computing time.
 
 ###Output:
 * `pval`: p-value
@@ -53,7 +53,7 @@ cd Multi_Marker_AFT
 
 ### Step2: Sample implementation
 This code example implements the `Multi_Marker_AFT` method in detecting genetic association effects, with covariate adjustment and left truncation, without considering confounding effect and genetic heterogeneity. 
-The sample genotype dataset has sample size `N=500`, and SNP-set size `p=10`. Since `N >> p`, small sample correction is turned off by setting `smalln_ind='no_smalln_adj'`. `IBS` kernel is used to measure genetic similarity.
+The sample genotype dataset has sample size `N=500`, and SNP-set size `p=10`. Since `N >> p`, small sample correction is turned off by setting `smalln_ind='no_smalln_adj'`. `IBS` kernel is used to measure genetic similarity by setting `kernel_G = 'ibs'`.
 
 ```bash
 suppressMessages(library(MASS))
