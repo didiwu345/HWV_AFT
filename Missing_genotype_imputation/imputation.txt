@@ -1,0 +1,22 @@
+### Example execution of IMPUTE2 software (v2.3.2) to impute missing genotypes in SNPs that fall between 1.5E7 and 2.0E7 base pairs in chromosome 1.
+
+Step 1: Pre-phasing
+./impute_v2.3.2_x86_64_static/impute2 \
+-prephase_g \
+-m hapmap3_r2_b36/genetic_map_chr1_combined_b36.txt \
+-g ../ROSMAP_auto_transform_to_GEN_format/ROSMAP_auto_chr1.gen \
+-int 1.5e7 1.51e7 \
+-Ne 10000 \
+-o chr1/chr1_prephase
+
+Step 2: Imputation
+./impute_v2.3.2_x86_64_static/impute2 \
+-use_prephased_g \
+-m ./hapmap3_r2_b36/genetic_map_chr1_combined_b36.txt \
+-h hapmap3_r2_b36/hapmap3_r2_b36_chr1.haps \
+-l hapmap3_r2_b36/hapmap3_r2_b36_chr1.legend \
+-known_haps_g ./chr1/chr1_prephase_haps \
+-int 1.5e7 1.51e7 \
+-Ne 10000 \
+-o chr1/chr1 \
+-phase
