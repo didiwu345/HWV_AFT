@@ -66,31 +66,23 @@ suppressMessages(library(Matrix))
 suppressMessages(library(lbaft))
 suppressMessages(library(coxKM))
 
-sourceCpp('utils/aft_comprisk.cpp')
+sourceCpp('utils/aft_comprisk_smalln.cpp')
 ibskm = function(X){ return(1 - as.matrix(dist(X, method = "manhattan"))/(2*ncol(X))) }  ### IBS kenrel: Input genotype matrix
 cpkm = function(X){ return(tcrossprod(X)) }                                              ### Cross-product kernel: Input genotype matrix
 simkm = function(X){ return(exp(-as.matrix(dist(X,method='euclidean')^2)/ncol(X))) }     ### Gaussian kernel: Input covariate matrix
 idtkm = function(X){ return(0 + outer(as.numeric(X), as.numeric(X), "==")) }             ### For 1-column vector
 plkm = function(X){ return(ncol(X) + tcrossprod(X)) }                                    ### Product linear kernel
 
-G = read.csv('sample_data/genotype.csv')
-X = read.csv('sample_data/adj_cov.csv')
-status = read.csv('sample_data/status.csv')
-survt = read.csv('sample_data/survt.csv')
-trunct = read.csv('sample_data/trunct.csv')
+sample_data = readRDS('sample_data/sample_data.rds')
 
-pval = Multi_Marker_AFT(G=G, 
-			H=NULL, 
-			GxH=NULL, 
-			het_cov=NULL, 
-			adj_cov=X, 
-			kernel_G='ibs', 
-			kernel_H=NULL, 
-			kernel_het=NULL, 
-			smalln_ind='no_smalln_adj', 
-			trunct=trunct, 
-			survt=survt, 
-			status=status, 
-			BB=500)
+G = sample_data[['genotype']]
+X = sample_data[['adj_cov']]
+status = sample_data[['status']]
+survt = sample_data[['survt']]
+trunct = sample_data[['trunct']]
+
+source('Multi_Marker_AFT.r')
+
+pval = Multi_Marker_AFT(G=G, H=NULL, GxH=NULL, het_cov=NULL, adj_cov=X, kernel_G='ibs', kernel_H=NULL, kernel_het=NULL, smalln_ind='smalln_adj', trunct=trunct, survt=survt, status=status, BB=500)
 ```
 
