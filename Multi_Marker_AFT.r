@@ -1,4 +1,3 @@
-
 library(MASS)
 library(CompQuadForm)
 library(survival)
@@ -87,14 +86,14 @@ Multi_Marker_AFT = function(G, H=NULL, GxH=NULL, het_cov=NULL, adj_cov=NULL, ker
   
   if(is.null(adj_cov)){
     beta_est = as.matrix(rep(0,ncol(adj_cov)))
-  } else if(is.matrix(adj_cov)){
+  } else {
     if(is.null(trunct)){trunct = rep(0, nrow(G))} else {trunct = trunct}
-    fit = suppressWarnings(fit.GP(Surv(trunct, survt, status) ~ adj_cov - 1, vMethod='M1'))
+    fit = suppressWarnings(fit.GP(Surv(as.matrix(trunct), as.matrix(survt), as.matrix(status)) ~ as.matrix(adj_cov) - 1, vMethod='M1'))
     beta_est = as.matrix(fit$beta)
   }
   
   #-- All time points (ordered)
-  tall = sort(c(log(survt) - adj_cov %*% beta_est), decreasing = F)
+  tall = as.numeric(sort(unlist(log(survt) - as.matrix(adj_cov) %*% beta_est), decreasing = F))
   
   if(smalln_ind=='no_smalln_adj'){
     
@@ -127,7 +126,16 @@ Multi_Marker_AFT = function(G, H=NULL, GxH=NULL, het_cov=NULL, adj_cov=NULL, ker
     
   } else if(smalln_ind=='smalln_adj'){
     
-    sourceCpp('ustils/aft_comprisk_smalln.cpp')
+    sourceCpp('utils/aft_comprisk_smalln.cpp')
+    
+    cause1event = status
+    M_tild = M_tild_cpp(adj_cov,trunct,survt,tall,cause1event,beta_est)
+    q_star = c((t(M_tild) %*% K %*% M_tild) / crossprod(M_tild))
+    Knew = K - q_star*diag(nrow(G))
+    Knew_rank = rankMatrix(Knew)[1]
+    Knew_eigen = eigen(Knew)
+    R1 = as.matrix(Knew_eigen$vectors[,1:Knew_rank])
+    Knew_eval = Knew_eigen$values[1:Knew_rank]
     
     W_mats <- mvrnorm(BB, mu=rep(0,ncol(adj_cov)), Sigma=diag(ncol(adj_cov)))
     Q_all <- Qall_cpp(t(R1),W_mats,adj_cov,trunct,survt,tall,cause1event,beta_est)
