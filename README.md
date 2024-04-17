@@ -50,7 +50,14 @@ git clone https://github.com/didiwu345/Multi_Marker_AFT.git
 cd Multi_Marker_AFT
 ```
 
-### Step2: Sample implementation
+### Step 2: Install required R packages
+```
+install.packages('./BB_2019.10-1.tar.gz', repos = NULL, type="source")
+install.packages('./geepack_1.3.10.tar.gz', repos = NULL, type="source")
+install.packages('./lbaft_0.0-1.tar.gz', repos = NULL, type="source")
+```
+
+### Step3: Sample implementation
 This code example implements the `Multi_Marker_AFT` method in detecting genetic association effects, with covariate adjustment and left truncation, without considering confounding effect and genetic heterogeneity. 
 The sample genotype dataset has sample size `N=500`, and SNP-set size `p=10`. Since `N >> p`, small sample correction is turned off by setting `smalln_ind='no_smalln_adj'`. `IBS` kernel is used to measure genetic similarity by setting `kernel_G = 'ibs'`.
 
