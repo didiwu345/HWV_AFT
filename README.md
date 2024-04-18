@@ -43,6 +43,7 @@ To successfully implement the test, you will need following R package dependenci
 
 
 ## Example of Multi_Marker_AFT method implementation
+
 ### Step1: Clone the repo
 ```bash
 cd ~
@@ -51,10 +52,15 @@ cd Multi_Marker_AFT
 ```
 
 ### Step 2: Install required R packages
+Make sure you follow the [instruction](https://cran.r-project.org/bin/macosx/) to install R-4.3.3, as well as downloading and installing XQuartz and GNU Fortran. Then install the required CRAN or non-CRAN R packages. For non-CRAN packages, the corresponding source package is provided in the repo.
 ```
+install.packages('quadprog')
+install.packages('broom')
+install.packages('magrittr')
 install.packages('./BB_2019.10-1.tar.gz', repos = NULL, type="source")
 install.packages('./geepack_1.3.10.tar.gz', repos = NULL, type="source")
 install.packages('./lbaft_0.0-1.tar.gz', repos = NULL, type="source")
+install.packages('./coxKM_0.3.tar.gz', repos = NULL, type="source")
 ```
 
 ### Step3: Sample implementation
